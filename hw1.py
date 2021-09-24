@@ -43,7 +43,7 @@ def valid_command(command):
     if com[0] == 'exit':
         raise ExitError
     for i, c in enumerate(com):
-        if c not in dic_command.keys():
+        if c.lower() not in dic_command.keys():
             if n == 0: #this command is only printed once after the first input of the invalid command in each recursive cycle (that means if you make invalid input twice, it is printed twice)
                 print(
                     f"Invalid command '{c}'. Available commands: \ntranscribe\ncomplement\nreverse\nAnd their combinations, as well as exit for exiting the function. See README.md for further information.\nTry again!")
@@ -81,7 +81,7 @@ try:
         nuc_seq = seq
 
         for i, command in enumerate(reversed(whole_commands)): #reversed sequence of the commands based on the example of reverse complement
-            nuc_seq = dic_command[command](nuc_seq)
+            nuc_seq = dic_command[command.lower()](nuc_seq)
         print(nuc_seq)
 
 
