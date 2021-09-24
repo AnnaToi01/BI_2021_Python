@@ -1,9 +1,16 @@
 state = True
-DNA_comp = {"T": "A", "G": "C", "C": "G", "A": "T",
-            "t": "a", "g": "c", "c": "g", "a": "t"}
 
-RNA_comp = {"U": "A", "G": "C", "C": "G", "A": "U",
-            "u": "a", "g": "c", "c": "g", "a": "u"}
+class ExitError(Exception): pass
+
+
+def flatten(lis, out=[]):
+    for ele in lis:
+        if isinstance(ele, list):
+            flatten(ele, out)
+        else:
+            out.append(ele)
+
+    return out
 
 
 def reverse(s):
@@ -16,66 +23,63 @@ def transcribe(s):
 
 def complement(s):
     if "T" in s.upper():
-        return ''.join([DNA_comp[i] for i in s])
+        return s.translate(str.maketrans("ATGCatgc", "TACGtacg"))  # alternatively, ''.join([DNA_comp[i] for i in s])
     else:
-        return ''.join([RNA_comp[i] for i in s])
-
-
-def rev_complement(s):
-    return reverse(complement(s))
-
-
-def valid_command(command):
-    global com
-    com = command
-    if command not in dic_command.keys():
-        print(
-            "Invalid command. Available commands: \ntranscribe\ncomplement\nreverse\nAnd their combinations!\nTry again!")
-        com = input("Enter command: ")
-        valid_command(com)
-    return
-
-
-def valid_seq(sequence, command):
-    global seq
-    seq = sequence
-    legal = ['A', 'G', 'C', 'T', 'U']
-    if "T" in sequence.upper() and "U" in sequence.upper():
-        print('Invalid alphabet. Try again')
-        seq = input("Enter sequence: ")
-        valid_seq(seq, command)
-    elif ("U" in sequence.upper()) and (command == 'transcribe'):
-        print("RNA sequence cannot be transcribed. Try again!")
-        seq = input("Enter sequence: ")
-        valid_seq(seq, command)
-    elif all((c in legal) for c in sequence.upper()):
-        return
-    else:
-        print("Invalid alphabet. Try again!")
-        seq = input("Enter sequence: ")
-        valid_seq(seq, command)
+        return s.translate(str.maketrans("AUGCaugc", "UACGuacg"))  # alternatively, ''.join([RNA_comp[i] for i in s])
 
 
 dic_command = {'transcribe': transcribe,
                'complement': complement,
                'reverse': reverse}
 
-while state:
 
-    commands = input("Enter command: ").replace(",", "").split(" ")
-    if commands[0].lower().startswith('exit'):
-        print('Good luck')
-        break
-    whole_commands = ""
-    len_commands = len(commands)
-    for i, command in enumerate(commands):
-        whole_commands = f"{commands[len_commands - 1 - i]}({whole_commands}"
+def valid_command(command):
+    com = command.replace(",", "").split(" ")
+    n = 0
+    if com[0] == 'exit':
+        raise ExitError
+    for i, c in enumerate(com):
+        if c not in dic_command.keys():
+            if n == 0: #this command is only printed once after the first input of the invalid command in each recursive cycle (that means if you make invalid input twice, it is printed twice)
+                print(
+                    f"Invalid command '{c}'. Available commands: \ntranscribe\ncomplement\nreverse\nAnd their combinations, as well as exit for exiting the function. See README.md for further information.\nTry again!")
+            n = 1
+            com[i] = input(f"Enter a command to substitute the invalid command '{c}' from previous entry: ")
+            com[i] = valid_command(com[i]) #the input is checked every time recursively
 
-        valid_command(command)
+    return com
 
-    nuc_seq = input("Enter sequence: ")
-    valid_seq(nuc_seq, command)
-    nuc_seq = seq
 
-    print(eval(f"{whole_commands}'{nuc_seq}'{len_commands * ')'}"))
+def valid_seq(sequence):
+    global seq
+    seq = sequence
+    legal = ['A', 'G', 'C', 'T', 'U']
+    if "T" in sequence.upper() and "U" in sequence.upper():
+        print('Invalid alphabet. Try again')
+        seq = input("Enter sequence: ")
+        valid_seq(seq)
+    elif all((c in legal) for c in sequence.upper()):
+        return
+    else:
+        print("Invalid alphabet. Try again!")
+        seq = input("Enter sequence: ")
+        valid_seq(seq)
+
+
+try:
+    while state:
+        commands = input("Enter command: ")
+        whole_commands = valid_command(commands)
+        whole_commands = flatten(whole_commands, [])
+        nuc_seq = input("Enter sequence: ")
+        valid_seq(nuc_seq)
+        nuc_seq = seq
+
+        for i, command in enumerate(reversed(whole_commands)): #reversed sequence of the commands based on the example of reverse complement
+            nuc_seq = dic_command[command](nuc_seq)
+        print(nuc_seq)
+
+
+except ExitError:
+    print("Good luck!")
 
