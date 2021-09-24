@@ -14,14 +14,17 @@ def flatten(lis, out=[]):
 
 
 def reverse(s):
+    """Reverses the nucleotide sequence"""
     return s[::-1]
 
 
 def transcribe(s):
+    """Transcribes the DNA sequence"""
     return s.replace('T', 'U').replace('t', 'u')
 
 
 def complement(s):
+    """Complements the nucleotide sequences"""
     if "T" in s.upper():
         return s.translate(str.maketrans("ATGCatgc", "TACGtacg"))  # alternatively, ''.join([DNA_comp[i] for i in s])
     else:
@@ -34,6 +37,7 @@ dic_command = {'transcribe': transcribe,
 
 
 def valid_command(command):
+    """Validates the command, takes it as a string and gives out a list of all commands"""
     com = command.replace(",", "").split(" ")
     n = 0
     if com[0] == 'exit':
@@ -43,7 +47,7 @@ def valid_command(command):
             if n == 0: #this command is only printed once after the first input of the invalid command in each recursive cycle (that means if you make invalid input twice, it is printed twice)
                 print(
                     f"Invalid command '{c}'. Available commands: \ntranscribe\ncomplement\nreverse\nAnd their combinations, as well as exit for exiting the function. See README.md for further information.\nTry again!")
-            n = 1
+            n += 1
             com[i] = input(f"Enter a command to substitute the invalid command '{c}' from previous entry: ")
             com[i] = valid_command(com[i]) #the input is checked every time recursively
 
@@ -51,6 +55,7 @@ def valid_command(command):
 
 
 def valid_seq(sequence):
+    """Validates the nucleotide sequence"""
     global seq
     seq = sequence
     legal = ['A', 'G', 'C', 'T', 'U']
