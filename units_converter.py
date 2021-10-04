@@ -22,7 +22,7 @@ def atm_to_pascal(value):
     """
     Converts atmosphere to pascal
     """
-    return value*101325
+    return atm_to_bar(bar_to_pascal(value))
 
 #American measurement system to SI Units
 
@@ -56,9 +56,14 @@ def fahrenheit_to_kelvin(value):
     """
     return (value - 32)*5/9+ 273.15
 
-def cup_to_cubicmeter(value):
+def cup_to_ml(value):
     """
-    Converts cup to cubic meter (Volume)
+    Converts cup to milliliter (Volume)
     """
-    return value/4427
+    return value*236.588
 
+def pound_to_kilogram(value):
+    """
+    Converts pounds to kilograms
+    """
+    return value/2.205
