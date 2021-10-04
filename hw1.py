@@ -1,7 +1,8 @@
 state = True
 legal = {'A', 'G', 'C', 'T', 'U'}
 
-class ExitError(Exception): pass
+class ExitError(Exception):
+    pass
 
 
 def flatten(lis, out=[]):
@@ -45,15 +46,18 @@ def valid_command(command):
         raise ExitError
     for i, c in enumerate(com):
         if c.lower() not in dic_command.keys():
-            if n == 0: #this command is only printed once after the first input of the invalid command in each recursive cycle (that means if you make invalid input twice, it is printed twice)
+            if n == 0:  # only printed once after the first input of the invalid command in each recursive cycle
                 print(
-                    f"Invalid command '{c}'. Available commands: \ntranscribe\ncomplement\nreverse\nAnd their combinations, as well as exit for exiting the function. See README.md for further information.\nTry again!")
+                    f"Invalid command '{c}'. Available commands: \n"
+                    f"transcribe\n"
+                    f"complement\n"
+                    f"reverse\n"
+                    f"And their combinations, as well as exit for exiting the function. "
+                    f"See README.md for further information.\nTry again!")
             n += 1
             com[i] = input(f"Enter a command to substitute the invalid command '{c}' from previous entry: ")
-            com[i] = valid_command(com[i]) #the input is checked every time recursively
-
+            com[i] = valid_command(com[i])  # the input is checked every time recursively
     return com
-
 
 
 def valid_seq(sequence):
@@ -79,11 +83,11 @@ try:
 
         nuc_seq = valid_seq(nuc_seq)
 
-        for i, command in enumerate(reversed(whole_commands)): #reversed sequence of the commands based on the example of reverse complement
+        for i, command in enumerate(reversed(whole_commands)):
+            # reversed sequence of the commands based on the example of reverse complement
             nuc_seq = dic_command[command.lower()](nuc_seq)
         print(nuc_seq)
 
 
 except ExitError:
     print("Good luck!")
-
