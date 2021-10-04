@@ -78,4 +78,3 @@ def gallon_to_liter(value):
     Converts cup to cubic meter (Volume)
     """
     return value*3.78541
-
