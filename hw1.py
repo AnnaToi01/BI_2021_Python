@@ -1,4 +1,5 @@
 state = True
+legal = {'A', 'G', 'C', 'T', 'U'}
 
 class ExitError(Exception): pass
 
@@ -54,21 +55,19 @@ def valid_command(command):
     return com
 
 
+
 def valid_seq(sequence):
     """Validates the nucleotide sequence"""
-    global seq
-    seq = sequence
-    legal = ['A', 'G', 'C', 'T', 'U']
     if "T" in sequence.upper() and "U" in sequence.upper():
         print('Invalid alphabet. Try again')
-        seq = input("Enter sequence: ")
-        valid_seq(seq)
+        sequence = input("Enter sequence: ")
+        return valid_seq(sequence)
     elif all((c in legal) for c in sequence.upper()):
-        return
+        return sequence
     else:
         print("Invalid alphabet. Try again!")
-        seq = input("Enter sequence: ")
-        valid_seq(seq)
+        sequence = input("Enter sequence: ")
+        return valid_seq(sequence)
 
 
 try:
@@ -77,8 +76,8 @@ try:
         whole_commands = valid_command(commands)
         whole_commands = flatten(whole_commands, [])
         nuc_seq = input("Enter sequence: ")
-        valid_seq(nuc_seq)
-        nuc_seq = seq
+
+        nuc_seq = valid_seq(nuc_seq)
 
         for i, command in enumerate(reversed(whole_commands)): #reversed sequence of the commands based on the example of reverse complement
             nuc_seq = dic_command[command.lower()](nuc_seq)
