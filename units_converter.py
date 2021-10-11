@@ -1,5 +1,7 @@
 # American measurement system to SI Units
 
+class UnitsError(Exception):
+    pass
 
 def inch_to_cm(value):
     """
@@ -72,10 +74,12 @@ try:
     in_unit = input("Enter an input unit: ").lower()
     out_unit = input("Enter an output unit: ").lower()
     in_value = float(input("Enter the value: "))
-    if in_units.index(in_unit) == out_units.index(out_unit):
+    if in_unit not in in_units or out_unit not in out_units:
+        raise UnitsError
+    elif in_units.index(in_unit) == out_units.index(out_unit):
         print(dic_func[in_unit](in_value))
     else:
-        Exception
+        raise UnitsError
 except Exception:
     print("False units. Possible unit conversions are:"
           "\ninch to centimeter\nfeet to meter\nmile to kilometer"
