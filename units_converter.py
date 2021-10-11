@@ -81,7 +81,7 @@ try:
         print(dic_func[in_unit](in_value))
     else:
         raise UnitsError
-except Exception:
+except UnitsError:
     print("False units. Possible unit conversions are:"
           "\ninch to centimeter\nfeet to meter\nmile to kilometer"
           "\nfahrenheit to celsius"
