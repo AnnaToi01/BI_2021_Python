@@ -55,7 +55,7 @@ def gallon_to_liter(value):
     return value*3.78541
 
 
-dic_func= {
+dic_func = {
     "fahrenheit": fahrenheit_to_celsius,
     "inch": inch_to_cm,
     "feet": feet_to_m,
@@ -76,8 +76,11 @@ try:
         print(dic_func[in_unit](in_value))
     else:
         Exception
-except:
-    print("False units. Possible unit conversions are:\ninch to centimeter\nfeet to meter\nmile to kilometer\nyard to kilometer\nfahrenheit to celsius\ncup to cubicmeter\ngallon to liter")
+except Exception:
+    print("False units. Possible unit conversions are:"
+          "\ninch to centimeter\nfeet to meter\nmile to kilometer"
+          "\nyard to kilometer\nfahrenheit to celsius"
+          "\ncup to cubicmeter\ngallon to liter")
 
 
 
