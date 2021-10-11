@@ -79,5 +79,5 @@ try:
 except Exception:
     print("False units. Possible unit conversions are:"
           "\ninch to centimeter\nfeet to meter\nmile to kilometer"
-          "\nyard to kilometer\nfahrenheit to celsius"
+          "\nfahrenheit to celsius"
           "\ncup to cubicmeter\ngallon to liter")
