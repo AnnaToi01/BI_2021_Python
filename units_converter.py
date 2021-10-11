@@ -3,6 +3,7 @@
 class UnitsError(Exception):
     pass
 
+
 def inch_to_cm(value):
     """
     Converts inches to kilometer (Distance)
