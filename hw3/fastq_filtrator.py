@@ -72,7 +72,7 @@ if __name__ == "__main__":
     input_path = input("Enter path to the input file: ")
     output_path = input("Enter the prefix of the output file: ")
     gc_bounds_in = tuple(float(i) for i in input("Enter the bounds for GC: ").split())
-    length_bounds_in = tuple(float(i) for i in input("Enter the bounds for length of the read: ").split())
+    length_bounds_in = tuple(int(i) for i in input("Enter the bounds for length of the read: ").split())
     qs_threshold_in = input("Enter the minimal mean quality of the read: ")
     try:
         qs_threshold_in = float(qs_threshold_in)
