@@ -20,7 +20,7 @@ def united(reads, dic_ind, gc_bounds=(0, 100), length_bounds=(0, 2 ** 32), quali
     for i, read in enumerate(reads):
 
         if gc_bounds != (0, 100):
-            mean = (read[1].count("G") + read[1].count("C")) / len(read[1])
+            mean = (read[1].upper().count("G") + read[1].upper().count("C")) / len(read[1])
             if mean > gc_up / 100 or mean < gc_low / 100:
                 dic_ind[i] += 1
         if length_bounds != (0, 2 ** 32):
