@@ -12,6 +12,7 @@ def inch_to_cm(value):
         return "Distance cannot be less than 0"
     return value*2.54
 
+
 def feet_to_m(value):
     """
     Converts feet to meter (Distance)
@@ -39,7 +40,6 @@ def fahrenheit_to_kelvin(value):
     if value < -459.67:
         return "You've reached the absolute minimum of temperature"
     return (value - 32)*5/9 + 273.15
-
 
 
 def cup_to_ml(value):
@@ -77,9 +77,6 @@ try:
     in_unit = input("Enter an input unit: ").lower()
     out_unit = input("Enter an output unit: ").lower()
     in_value = float(input("Enter the value: "))
-
-
-    in_value = float(input("Enter the value: "))
     if in_unit not in in_units or out_unit not in out_units:
         raise UnitsError
     elif in_units.index(in_unit) == out_units.index(out_unit):
@@ -91,4 +88,3 @@ except UnitsError:
           "\ninch to centimeter\nfeet to meter\nmile to kilometer"
           "\nfahrenheit to kelvin"
           "\ncup to milliliter\npound to kilogram")
-
