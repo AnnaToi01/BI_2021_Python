@@ -26,7 +26,6 @@ def united(reads, dic_ind, gc_bounds=(0, 100), length_bounds=(0, 2 ** 32), quali
         if length_bounds != (0, 2 ** 32):
             if len(read[1]) > ln_up or len(read[1]) < ln_low:
                 dic_ind[i] += 1
-                print("Hi")
         if quality_threshold != 0:
             quality_sum = 0
             for character in read[3]:
