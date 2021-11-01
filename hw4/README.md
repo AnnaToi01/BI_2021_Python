@@ -10,6 +10,7 @@ Alternatively, the unzipped version is already present in the current directory 
 Anaconda has been used to manage virtual environments. If you do not have it installed, please see the instructions https://docs.anaconda.com/anaconda/install/linux/. 
 
 1. Create the virtual environment with the help of conda. Please keep in mind that any python version older than 3.9 will not work with the code.
+
 conda create --name yourenv python=3.9.7
 
 2. Activate the virtual environment.
