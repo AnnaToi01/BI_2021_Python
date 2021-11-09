@@ -61,7 +61,7 @@ def compute_multidimensional_distance(x, y):
     return np.sqrt(np.sum(np.square(x - y)))
 
 
-def compute_pair_distance(x):
+def compute_pair_distances(x):
     """
     Compute pair distance matrix
     """
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         "multiply matrices": multiply_matrices,
         "compute 2d distance": compute_2d_distance,
         "compute multidimensional distance": compute_multidimensional_distance,
-        "compute pair distance": compute_pair_distance,
+        "compute pair distances": compute_pair_distances,
         "compute length of vector": length_vector,
         "transpose": transpose,
         "conjugate transpose": conjugate_transpose
