@@ -68,7 +68,7 @@ def compute_pair_distance(x):
     nvec = x.shape[0]
     distance_matrix = np.zeros((nvec, nvec))
     for i in range(nvec - 1):
-        dist = np.sqrt(np.sum(np.square(x[i,] - x[i + 1:, ]), axis=1))
+        dist = np.sqrt(np.sum(np.square(x[i, ] - x[i + 1:, ]), axis=1))
         distance_matrix[i, i + 1:] = dist
         distance_matrix[i + 1:, i] = dist
     return distance_matrix
