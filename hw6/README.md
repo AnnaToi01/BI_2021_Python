@@ -9,7 +9,7 @@ This is homework about regular expressions. The description of the individual ex
 <a name="instaus"></a>
 ## Installation and Usage
 
-You can download the current directory with all the needed files (INCLUDING requirements.txt) by typing in https://github.com/AnnaToi01/BI_2021_Python/tree/hw4/hw4 into the search field https://download-directory.github.io/. You can then unpack the directory with all the needed files and start following the instructions below.
+You can download the current directory with all the needed files (INCLUDING requirements.txt) by typing in https://github.com/AnnaToi01/BI_2021_Python/tree/hw6/hw6 into the search field https://download-directory.github.io/. You can then unpack the directory with all the needed files and start following the instructions below.
 Set up virtual environment in working directory:
 1. Create virtual environment
     * Via `virtualenv`
