@@ -151,7 +151,7 @@ def exercise_5(path_to_file, file_out, figure_out, output_dir):
         plt.grid(axis="y")
         plt.xticks(np.arange(max(length_ls) + 1))
         plt.xlabel("Length of word")
-        plt.ylabel("Count")
+        plt.ylabel("Frequency in percentage")
         plt.title("Distribution of length of words in text 2340AD")
         plt.savefig(Path(output_dir, figure_out))
         plt.show()
