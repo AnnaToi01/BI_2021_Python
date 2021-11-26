@@ -22,16 +22,12 @@ def multiplication_check(arrays):
     """
     Check if matrices in a list can be multiplied
     """
-    set_value = True
     for i in range(0, len(arrays) - 1):
         n_cols_1 = arrays[i].shape[1]
         n_rows_2 = arrays[i + 1].shape[0]
-        if n_cols_1 == n_rows_2:
-            continue
-        else:
-            set_value = False
-            break
-    return set_value
+        if n_cols_1 != n_rows_2:
+            return False
+        return True
 
 
 def multiply_matrices(arrays):
