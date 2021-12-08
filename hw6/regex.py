@@ -28,7 +28,7 @@ def exercise_1(path_to_file, file_out, output_dir):
     """
     with open(path_to_file, 'r') as reference, open(Path(output_dir, file_out), 'w') as after:
         content = reference.read()
-        pattern = re.compile(r'\bftp[.\w/]+\b')
+        pattern = re.compile(r'\bftp[.\w/#]+\b')
         matches = pattern.findall(content)
         after.write("\n".join(matches))
 
@@ -163,7 +163,7 @@ if __name__ == "__main__":
     # Exercise 1
     link1 = "https://raw.githubusercontent.com/Serfentum/bf_course/master/15.re/references"
     path_to_file1 = download_files_from_http(link=link1, output_dir=output_dir)
-    exercise_1(path_to_file=path_to_file1, file_out="fttps", output_dir=output_dir)
+    exercise_1(path_to_file=path_to_file1, file_out="ftps", output_dir=output_dir)
     # Exercise 2
     link2 = "https://raw.githubusercontent.com/Serfentum/bf_course/master/15.re/2430AD"
     path_to_file2 = download_files_from_http(link=link2, output_dir=output_dir)
