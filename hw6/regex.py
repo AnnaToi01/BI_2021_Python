@@ -27,9 +27,10 @@ def exercise_1(path_to_file, file_out, output_dir):
     @return: None, generates ouput_dir/file_out
     """
     with open(path_to_file, 'r') as reference, open(Path(output_dir, file_out), 'w') as after:
-        contents = reference.read()
-        after.write(re.sub(r'\b(ftp)\.', "ftps.", contents))
-    return
+        content = reference.read()
+        pattern = re.compile(r'\bftp[.\w/]+\b')
+        matches = pattern.findall(content)
+        after.write("\n".join(matches))
 
 
 def exercise_2_digits(path_to_file, file_out, output_dir):
@@ -40,15 +41,13 @@ def exercise_2_digits(path_to_file, file_out, output_dir):
     @param output_dir: str, output directory
     @return: None, generates ouput_dir/file_out
     """
-    pattern = re.compile(r'\d+')
+    pattern = re.compile(r'\d+[.]?\d*')
     with open(path_to_file, "r") as f, open(Path(output_dir, file_out), 'w') as after:
         contents = f.read()
         matches = pattern.findall(contents)
         for match in matches:
             after.write(match + "\n")
     return
-    # 2. Exercise
-
 
 def exercise_2_digits_words(path_to_file, file_out, output_dir):
     """
@@ -60,7 +59,7 @@ def exercise_2_digits_words(path_to_file, file_out, output_dir):
     """
     numbers = (r"(?x)          # Turn on Verbose" "\n"
                r"                (" "\n"
-               r"                  \b\d+|        # digits" "\n"
+               r"                  \b\d+[.]?\d*|        # digits" "\n"
                r"                  \b                           " "\n"
                r"                  (?:" "\n"
                r"                      one|two|three|four|five|six|seven|eight|nine|ten| " "\n"
@@ -163,7 +162,7 @@ if __name__ == "__main__":
     # Exercise 1
     link1 = "https://raw.githubusercontent.com/Serfentum/bf_course/master/15.re/references"
     path_to_file1 = download_files_from_http(link=link1, output_dir=output_dir)
-    exercise_1(path_to_file=path_to_file1, file_out="references_fttps", output_dir=output_dir)
+    exercise_1(path_to_file=path_to_file1, file_out="fttps", output_dir=output_dir)
     # Exercise 2
     link2 = "https://raw.githubusercontent.com/Serfentum/bf_course/master/15.re/2430AD"
     path_to_file2 = download_files_from_http(link=link2, output_dir=output_dir)
