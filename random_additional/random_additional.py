@@ -54,13 +54,13 @@ def change_read(read, subs, indels):
     # Construct read from scratch
     final_read = ""
     for i, nc in enumerate(read):
-        if indels[i] == 2: # we delete element in any case if there's 2
+        if indels[i] == 2:  # we delete element in any case if there's 2
             continue
-        if subs[i] == 1: # Substitution - take any other nucleotide than we have, equal probability
+        if subs[i] == 1:  # Substitution - take any other nucleotide than we have, equal probability
             final_read += random.choice([i for i in nucleotides if i != nc])[0]
-        else: # No substitution -> add the same nucleotide
+        else:  # No substitution -> add the same nucleotide
             final_read += nc
-        if indels[i] == 1: # if we have insertion - add any random nucleotide
+        if indels[i] == 1:  # if we have insertion - add any random nucleotide
             final_read += random.choice([nucleotides])[0]
     return final_read
 
@@ -71,7 +71,6 @@ def sequencing_simulator(sequence, coverage, read_length):
     possible_reads = [sequence[i:(i + read_length)] for i in range(sequence_length - read_length + 1)]
     # Randomly select the reads according to the coverage
     reads = random.choices(possible_reads, k=sequence_length * coverage)
-    nucleotides = ["A", "C", "G", "T"]
     substitution_rates = {
         "A": 0.004,
         "C": 0.004,
@@ -84,12 +83,12 @@ def sequencing_simulator(sequence, coverage, read_length):
     for i, read in enumerate(reads):
         # Create a list of substitutions for each nucleotide, 0 - no subst., 1 - subst.
         subs = list(itertools.chain(*[random.choices([0, 1],
-                              weights=[1 - substitution_rates[nc], substitution_rates[nc]])
-                for nc in read]))
+                                                     weights=[1 - substitution_rates[nc], substitution_rates[nc]])
+                                      for nc in read]))
         # Create a list of indel for each nucleotide, 0 - no indel, 1 - insertion, 2 - deletion
         indels = list(itertools.chain(*[random.choices([0, 1, 2],
-                                weights=[1 - 2 * indel_rates, indel_rates, indel_rates])
-                  for nc in read]))
+                                                       weights=[1 - 2 * indel_rates, indel_rates, indel_rates])
+                                        for nc in read]))
         final_reads.append(change_read(read, subs, indels))
     return final_reads
 
