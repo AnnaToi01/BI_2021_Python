@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import re
 from pathlib import Path
+from colorsys import hls_to_rgb
 
 
 # I'm too lazy to write time.time() all the time, I'm creating a decorator
@@ -170,6 +171,10 @@ def plot_monkey_sort_time_dependency(time_elapsed, length_list, output_dir):
     plt.show()
 
 
+def rainbow_color_stops(n, end=2/3):
+    return np.array([ hls_to_rgb(end * i/(n-1), 0.5, 1) for i in range(n) ])
+
+
 def random_walk(steps, output_dir):
     """
     Plots a graph of random walk, movement in upper, bottom, left, right direction of [-1, 1]
@@ -177,11 +182,14 @@ def random_walk(steps, output_dir):
     @param output_dir: output directory path
     @return:
     """
-    loc = np.zeros(2)
+    loc = np.zeros((steps, 2))
     fig, ax = plt.subplots()
     for i in range(steps):
-        loc += np.random.randint(-1, 2, 2)
-        plt.scatter(loc[0], loc[1], c="red", s=5)
+        loc[i, :] = loc[i-1, :] + np.random.randint(-1, 2, 2)
+    alphas = np.arange(0.25, 0.75, step=0.5/steps)
+    colors = rainbow_color_stops(steps)
+    plt.scatter(loc[:, 0], loc[:, 1], alpha=alphas, c=colors, s=4)
+    plt.plot(loc[:, 0], loc[:, 1], alpha=0.1, c="black")
     ax.axhline(y=0, color='k', linewidth=0.5)
     ax.axvline(x=0, color='k', linewidth=0.5)
     plt.savefig(Path(output_dir, "random_walk.jpg"))
@@ -206,8 +214,8 @@ def random_sierpinski_triangle(cycles, color, output_dir):
     coordinates = np.zeros((cycles, 2))
     coordinates[0, :] = (random.random(), random.random())
     for i in range(cycles):
-        vertix = random.choice(vertices)
-        coordinates[i, :] = 0.5*(coordinates[i-1, :] + vertix)
+        vertex = random.choice(vertices)
+        coordinates[i, :] = 0.5*(coordinates[i-1, :] + vertex)
 
     plt.scatter(coordinates[:, 0], coordinates[:, 1], c=color)
     plt.savefig(Path(output_dir, "random_sierpinski_triangle.jpg"))
@@ -258,7 +266,7 @@ if __name__ == '__main__':
     plot_monkey_sort_time_dependency(time_elapsed=time_elapsed, length_list=length_list, output_dir=output_dir)
 
     # Exercise 3: Random walk
-    steps = 1000
+    steps = 100000
     random_walk(steps=steps, output_dir=output_dir)
 
     # Exercise 4: Sierpinski's triangle

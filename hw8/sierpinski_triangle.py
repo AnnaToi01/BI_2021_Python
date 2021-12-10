@@ -1,7 +1,9 @@
 import math
 import turtle
+from functools import lru_cache
 
 
+@lru_cache
 def draw_triangle(t, length, pos, color):
     """
     Draws inverted triangle in position pos
@@ -22,13 +24,15 @@ def draw_triangle(t, length, pos, color):
     t.end_fill()
 
 
-def recursive_triangle(t, length, depth, color):
+@lru_cache
+def recursive_triangle(t, length, depth, color, pos_start):
     """
     Recursively defines positions to draw Sierpinski's triangle
     @param t: turtle object
     @param length: int, length to go forward
     @param depth: int, how many cycles of Sierpinski's triangle
     @param color: str, color of triangle
+    @param pos_start: tuple, starting position of the drawing
     @return: None, draws the Sierpinski triangles
     """
     '''
@@ -38,7 +42,7 @@ def recursive_triangle(t, length, depth, color):
     a new inverted Sierpinski triangle is drawn.
     Yes, I did spend too much time in order to figure this out.
     '''
-    pos_ls = [[0, 0]]
+    pos_ls = [pos_start]
     points_ls = []
     for i in range(depth):
         for point in points_ls:
@@ -61,22 +65,26 @@ def draw_sierpinski_triangle(length, depth, color_background, color_inner):
     @return: None, draws the Sierpinski triangles
     """
     screen = turtle.Screen()  # Getting screen, canvas
+    screen.setup(width = 2*length, height=1.5*length * math.sin(math.pi / 3))
+    screen.title("Sierpinski's triangle")
     t = turtle.Turtle(visible=False)  # Don't want to see the cursor (default visible = True)
-    screen.tracer(False)  # Direct image, no animation
+    # screen.tracer(False)  # Direct image, no animation
+    t.speed(0)
+    pos_start = (-length/2, -length/2)
     # Drawing the background big triangle
     t.fillcolor(color_background)
     t.begin_fill()
     t.penup()
-    t.goto(0, 0)
+    t.goto(pos_start)
     t.pendown()
     for i in range(3):
         t.forward(length)
         t.left(120)
     t.end_fill()
     # Drawing the inner triangles
-    recursive_triangle(t, length, depth, color_inner)
+    recursive_triangle(t, length, depth, color_inner, pos_start)
     t.hideturtle()
-    screen.tracer(True)
+    # screen.tracer(True)
     # Enable the code below exitonclick() if you want to save the image instead of seeing it
     screen.exitonclick()  # Exits the image only if you click on it
     # ts = turtle.getscreen()
