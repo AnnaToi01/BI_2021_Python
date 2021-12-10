@@ -65,7 +65,7 @@ def draw_sierpinski_triangle(length, depth, color_background, color_inner):
     @return: None, draws the Sierpinski triangles
     """
     screen = turtle.Screen()  # Getting screen, canvas
-    screen.setup(width = 2*length, height=1.5*length * math.sin(math.pi / 3))
+    screen.setup(width=2*length, height=1.5*length * math.sin(math.pi / 3))
     screen.title("Sierpinski's triangle")
     t = turtle.Turtle(visible=False)  # Don't want to see the cursor (default visible = True)
     # screen.tracer(False)  # Direct image, no animation

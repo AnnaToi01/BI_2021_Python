@@ -171,8 +171,8 @@ def plot_monkey_sort_time_dependency(time_elapsed, length_list, output_dir):
     plt.show()
 
 
-def rainbow_color_stops(n, end=2/3):
-    return np.array([ hls_to_rgb(end * i/(n-1), 0.5, 1) for i in range(n) ])
+def rainbow_color_stops(n, end=2 / 3):
+    return np.array([hls_to_rgb(end * i / (n - 1), 0.5, 1) for i in range(n)])
 
 
 def random_walk(steps, output_dir):
@@ -185,8 +185,8 @@ def random_walk(steps, output_dir):
     loc = np.zeros((steps, 2))
     fig, ax = plt.subplots()
     for i in range(steps):
-        loc[i, :] = loc[i-1, :] + np.random.randint(-1, 2, 2)
-    alphas = np.arange(0.25, 0.75, step=0.5/steps)
+        loc[i, :] = loc[i - 1, :] + np.random.randint(-1, 2, 2)
+    alphas = np.arange(0.25, 0.75, step=0.5 / steps)
     colors = rainbow_color_stops(steps)
     plt.scatter(loc[:, 0], loc[:, 1], alpha=alphas, c=colors, s=4)
     plt.plot(loc[:, 0], loc[:, 1], alpha=0.1, c="black")
@@ -207,7 +207,7 @@ def random_sierpinski_triangle(cycles, color, output_dir):
 
     vertices = np.array([
         [0, 0],
-        [0.5, (3**0.5)/2],
+        [0.5, (3 ** 0.5) / 2],
         [1, 0]
     ])
 
@@ -215,7 +215,7 @@ def random_sierpinski_triangle(cycles, color, output_dir):
     coordinates[0, :] = (random.random(), random.random())
     for i in range(cycles):
         vertex = random.choice(vertices)
-        coordinates[i, :] = 0.5*(coordinates[i-1, :] + vertex)
+        coordinates[i, :] = 0.5 * (coordinates[i - 1, :] + vertex)
 
     plt.scatter(coordinates[:, 0], coordinates[:, 1], c=color)
     plt.savefig(Path(output_dir, "random_sierpinski_triangle.jpg"))
@@ -232,7 +232,7 @@ def middle_replace(matchobj):
     n = len(s)
     print(s)
     if n > 2:
-        s = s[0] + ''.join(random.sample(s[1:n], n-2)) + s[n-1]
+        s = s[0] + ''.join(random.sample(s[1:n], n - 2)) + s[n - 1]
         return s
     else:
         return s
