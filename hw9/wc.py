@@ -45,7 +45,6 @@ def output(txt, func_dic, no_param_end=" ", param_end=" "):
     if all(func_dic.values()):
         for key in func_dic.keys():
             sys.stdout.write(no_param_end + str(key(txt)))
-            # txt.seek(0)
     else:
         for key, value in func_dic.items():
             if not value:
@@ -80,3 +79,4 @@ if __name__ == "__main__":
             count_bytes: args.bytes
         }
         output(file, func_dic, no_param_end="\t", param_end="\t")
+        sys.stdout.write("\n")
