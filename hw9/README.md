@@ -32,7 +32,7 @@ In alphabetical order. For each utility additionaly `-h`, `--help` option can be
         * `-i`, `--ignore_case` - ignore  case  distinctions  in  patterns and input data, so that characters that differ only in case match each other
         * `-c`, `--count` - print a count of matching lines for each input file
         * Can take multiple files as STDIN, match for each file is shown by `<file_name>: match`
-4. `head.py`
+4. `head.py`, default 10 lines
     * Output the first part of files
     * *OPTIONS in this order*:
         * `-n`, `--lines` - print the first NUM lines instead of  the  first  10;  with  the leading '-', print all but the last NUM lines of each file
@@ -74,7 +74,7 @@ In alphabetical order. For each utility additionaly `-h`, `--help` option can be
     * *OPTIONS in this order*:
         * Can take multiple files as STDIN
 12. `tail.py`
-    * Output the last part of files
+    * Output the last part of files, default 10 lines
     * *OPTIONS in this order*:
         * `-n`, `--lines` - output the last NUM lines, instead of the last  10; or  use  -n +NUM to output starting with line NUM'
         * Can take multiple files as STDIN, last n lines for each are separated by `==> path_to_file.name <==`
