@@ -12,7 +12,7 @@ def sort_alphabetical(path_to_file):
     @return: sorted lines
     """
     all_lines = [line for file in path_to_file for line in file]
-    sd_ls = sorted(all_lines, key=lambda x: re.sub('[^A-Za-z\d]*', '', x).lower())
+    sd_ls = sorted(all_lines, key=lambda x: re.sub('[^A-Za-z0-9]*', '', x).lower())
     for ls in sd_ls:
         sys.stdout.write(ls)
     return

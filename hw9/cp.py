@@ -35,4 +35,5 @@ if __name__ == "__main__":
     parser.add_argument('path_to_input_file', help="path to input file", nargs='+', default=sys.stdin)
     parser.add_argument('path_to_output_file', help="path to output file", type=str, default=sys.stdin)
     args = parser.parse_args()
-    copy(path_to_input_file=args.path_to_input_file, path_to_output_file=args.path_to_output_file, recursive=args.recursive)
+    copy(path_to_input_file=args.path_to_input_file, path_to_output_file=args.path_to_output_file,
+         recursive=args.recursive)

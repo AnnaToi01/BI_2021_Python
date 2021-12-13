@@ -36,7 +36,7 @@ def print_file_name(path_to_file):
     @param path_to_file: str, path_to_file
     @return: sys.stdout ==> path_to_file <==\n
     """
-    sys.stdout.write("==> " + path_to_file.name +  "<==\n")
+    sys.stdout.write("==> " + path_to_file.name + "<==\n")
 
 
 def tail(path_to_files, lines):

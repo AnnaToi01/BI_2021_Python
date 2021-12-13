@@ -18,15 +18,11 @@ def create_directory(path_to_directory, parents, verbose):
         for dir in path_to_directory:
             os.makedirs(dir, exist_ok=True)  # mkdir -p raises no Error when the directory exists
             if verbose:
-                # print(dir.split(sep=os.sep))
                 for i in range(len(dir.split(sep=os.sep))):
                     created = os.sep.join(dir.split(sep=os.sep)[:i + 1])
-                    # print(j)
                     if created not in printed:
                         sys.stdout.write(f"mkdir: created directory '{created}'\n")
                     printed.append(created)
-                    # print(printed)
-
     else:
         for dir in path_to_directory:
             os.mkdir(dir)
@@ -43,4 +39,3 @@ if __name__ == "__main__":
     parser.add_argument('path_to_directory', help="path to directory", nargs='+', type=str, default=sys.stdin)
     args = parser.parse_args()
     create_directory(path_to_directory=args.path_to_directory, parents=args.parents, verbose=args.verbose)
-

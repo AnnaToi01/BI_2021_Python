@@ -28,4 +28,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     link(path_to_input_file=args.path_to_input_file, path_to_output_file=args.path_to_output_file,
          symbolic=args.symbolic)
-

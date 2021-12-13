@@ -52,13 +52,13 @@ def grep(path_to_files, pattern,
     """
     if len(path_to_files) == 1:
         n = find_pattern(path_to_files[0], pattern=pattern, ignore_case=ignore_case,
-                     invert_match=invert_match, count=count)
+                         invert_match=invert_match, count=count)
         if count:
             sys.stdout.write(str(n)+"\n")
     else:
         for file in path_to_files:
             n = find_pattern(file, pattern=pattern, multiple_files=True, ignore_case=ignore_case,
-                         invert_match=invert_match, count=count)
+                             invert_match=invert_match, count=count)
             if count:
                 sys.stdout.write(file.name + ":")
                 sys.stdout.write(str(n)+"\n")
