@@ -1,14 +1,14 @@
 # UNIX utilities simulator
 
-These Python 3.8 scripts simulate the well-known UNIX command utilities using only built-in libraries, not including subprocess. 
+These Python 3.8 scripts simulate the well-known UNIX command utilities using only built-in libraries, not including subprocess. Please take into account that the utilities have only been used on Ubuntu 21.04 and might not be viable in other distributions.
 
 ## Table of Contents
 1. [List of Utilities](#utilities)
 2. [Installation and Usage](#instaus)
-    * Pipeline structure
-    * Preliminary settings
-    * Console interface
-    * Running utility
+    * [Pipeline structure](#pipstr)
+    * [Preliminary settings](#preset)
+    * [Console interface](#consint)
+    * [Running utility](#runut)
 3. [Software Requirements](#Software)
 
 <a name="utilities"></a>
@@ -97,29 +97,20 @@ In alphabetical order. For each utility additionaly `-h`, `--help` option can be
 <a name="instaus"></a>
 ## Installation and Usage
 
+<a name="pipstr"></a>
 ### Pipeline structure
-Pipeline is separated into several files located in `scripts` folder:
+The script files are separated into different files, but can be built into the shell pipeline.
 
-* `caclulations.py` contains functions required for calculations
-
-* `plotting.py` contains functions for plotting graphs
-
-* `main.py` contains main piece pf code for running all computations
-
-
-
-
+<a name="preset"></a>
 ### Preliminary settings
-Clone repository
+1. You can download the current directory with all the script by typing in https://github.com/AnnaToi01/BI_2021_Python/tree/hw9/hw9 into the search field https://download-directory.github.io/. Move the zip file to your working directory.
+2. Unpack the directory:
 ```
-$ git clone git@github.com:ipsemenov/FastQC_simulator.git
+$ unzip AnnaToi01\ BI_2021_Python\ hw9\ hw9.zip 
 ```
-Move to project directory 
-```
-$ cd FastQC
-```
+All the files will be in the current directory.
 Set up virtual environment in working directory:
-1. Create virtual environment
+3. Create virtual environment
     * Via `virtualenv`
 
        * Install virtualenv if it is not installed.
@@ -143,15 +134,25 @@ Set up virtual environment in working directory:
         * Activate it
            ```
            $ conda activate <env_name>
-2. Install necessary libraries
- ```
-$ pip install -r requirements.txt
- ```
-3. Install package wkhtmltopdf
-```
-$ sudo apt-get install wkhtmltopdf
-```
+4. Making the files executable
+   * Via `chmod +x`
+   ```
+   $ chmod +x *.py
+   ```
+   Then you can run the files from the working directory as follows:
+   ```
+   $ ./<file_name>.py
+   ```
+   * Modifying path (./ stands for current working directory, please specify the location of the needed .py files):
+   ```
+   $ ./install.py ./
+   ```
+   Then you can run the files from the working directory as follows:
+   ```
+   $ <file_name>.py
+   ```
 
+<a name="consint"></a>
 ### Console interface
 This instrument is a console utility maintaining following parameters:
 ```
@@ -160,28 +161,22 @@ This instrument is a console utility maintaining following parameters:
   -a , --adapters   path to file with adapters. Default: ./adapters.txt
 ```
 
-
+<a name="runut"></a>
 ### Running utility
 Example workflow:
 ```
-$ python main.py -i <path_to_fastq> -o <path_to_ouptut_dir>  -a <path_to_adapters> 
+$ ./ls.py | ./grep.py fastq | ./wc.py -l  
 ```
 To show brief information about parameters, execute following command:
 ```	
-$ python main.py -h
+$ ./ls.py -h
 ```
 
 
 <a name="Software"></a>
 ## Software Requirements
-<img src=https://img.shields.io/badge/FastQC%20Simulator-FASTQ%20Quality%20Check-informational height = 20>
 
 * <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/python.svg height=20> Python 3.8
-* <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/ubuntu.svg height = 20> Ubuntu 20.04 and 21.04
-* <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/git.svg height = 20> Git 2.30.2
-* <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/markdown.svg height=20> Markdown
-* <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/html5.svg height=20> HTML
-* <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/github.svg height=20> GitHub
+* <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/ubuntu.svg height = 20> Ubuntu 21.04
 * <img src=https://github.com/simple-icons/simple-icons/blob/develop/icons/gnubash.svg height=20> Bash
-* Rest of the requirements are in requirements.txt.
 
