@@ -1,21 +1,46 @@
 #!/usr/bin/env python
+
+import argparse
 import sys
 import os
-import argparse
-import shutil
 
-def add_to_path(path_to_directory_with_scripts, path_directory):
-    for file in os.listdir(path_to_directory_with_scripts):
-        if file.endswith(".py"):
-            path_to_script = os.path.join(os.path.abspath(path_to_directory_with_scripts), file)
-            shutil.copy(path_to_script, path_directory)
+
+def create_directory(path_to_directory, parents, verbose):
+    """
+    Makes directories
+    @param path_to_directory: list, path to directory
+    @param parents: bool, True - can create directory trees, False - only one directory at a time
+    @param verbose: bool, print a message for each created directory
+    @return:
+    """
+    if parents:
+        printed = []
+        for dir in path_to_directory:
+            os.makedirs(dir, exist_ok=True)  # mkdir -p raises no Error when the directory exists
+            if verbose:
+                # print(dir.split(sep=os.sep))
+                for i in range(len(dir.split(sep=os.sep))):
+                    created = os.sep.join(dir.split(sep=os.sep)[:i + 1])
+                    # print(j)
+                    if created not in printed:
+                        sys.stdout.write(f"mkdir: created directory '{created}'\n")
+                    printed.append(created)
+                    # print(printed)
+
+    else:
+        for dir in path_to_directory:
+            os.mkdir(dir)
+            if verbose:
+                sys.stdout.write(f"mkdir: created directory '{dir}'\n")
+
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Appends all the scripts in the given directory to the PATH")
-    parser.add_argument('path_to_directory_with_scripts', help="path to directory with scripts",
-                        type=str, default=sys.stdin)
-    parser.add_argument('-P', '--PATH_directory', help="PATH directory to place the scripts, "
-                                                       "default is the first directory in the PATH",
-                        type=str, default=f"{os.environ['PATH'].split(os.pathsep)[0]}")
+    parser = argparse.ArgumentParser(description="make directories")
+    parser.add_argument('-p', '--parents', action='store_true',
+                        help='no error if existing, make parent directories as needed')
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        help='print a message for each created directory')
+    parser.add_argument('path_to_directory', help="path to directory", nargs='+', type=str, default=sys.stdin)
     args = parser.parse_args()
-    add_to_path(args.path_to_directory_with_scripts, path_directory=args.PATH_directory)
+    create_directory(path_to_directory=args.path_to_directory, parents=args.parents, verbose=args.verbose)
+
