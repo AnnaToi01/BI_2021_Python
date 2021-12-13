@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import argparse
 import sys
 import re
@@ -7,7 +6,7 @@ import re
 
 def sort_alphabetical(path_to_file):
     """
-    Sort lines of text files in alphabetical order
+    Sort lines of text files in alphanumeric order
     @param path_to_file: path to file
     @return: sorted lines
     """
@@ -19,7 +18,7 @@ def sort_alphabetical(path_to_file):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Sort lines of text files in alphabetical order")
+    parser = argparse.ArgumentParser(description="Sort lines of text files in alphanumeric order")
     if sys.stdin.isatty():
         parser.add_argument('path_to_file', help="path to file", nargs="+",
                             type=argparse.FileType('r', encoding='UTF-8'), default=sys.stdin)

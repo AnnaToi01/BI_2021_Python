@@ -16,6 +16,7 @@ def list_dir(path_to_dir, all):
             if not f.startswith("."):
                 sys.stdout.write(f + "\n")
     else:
+        # In my computer, even in `/` folder . and .. are shown, so I made them default
         sys.stdout.write(".\n..\n")
         for f in files:
             sys.stdout.write(f + "\n")

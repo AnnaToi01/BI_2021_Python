@@ -65,13 +65,11 @@ def grep(path_to_files, pattern,
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="grep  searches  for  PATTERNS  in  each  FILE.  "
-                                                 "PATTERNS is one or more"
-                                                 " patterns separated by newline characters, and  "
+    parser = argparse.ArgumentParser(description="grep  searches  for  a pattern  in  each  FILE.  "
                                                  "grep  prints  each  line "
                                                  "that  matches a pattern.  Typically PATTERNS "
-                                                 "should be quoted when grep "
-                                                 "is used in a shell command.")
+                                                 "should be quoted  with single quotes when grep "
+                                                 "is used.")
     parser.add_argument('pattern', type=str,
                         help="python regex pattern")
     parser.add_argument('-v', '--invert_match', action='store_true',

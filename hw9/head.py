@@ -36,7 +36,7 @@ def print_file_name(path_to_file):
     @param path_to_file: str, path_to_file
     @return: sys.stdout ==> path_to_file <==\n
     """
-    sys.stdout.write("==> " + path_to_file.name + "<==\n")
+    sys.stdout.write("==> " + path_to_file.name + " <==\n")
 
 
 def tail(path_to_files, lines):
@@ -61,7 +61,7 @@ def tail(path_to_files, lines):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="output the last part of files")
+    parser = argparse.ArgumentParser(description="output the first part of files")
     parser.add_argument('-n', '--lines',  nargs='?', type=str, const="10", default="10",
                         help="print the first NUM lines instead of  the  first  10;  with  the "
                              "leading '-', print all but the last NUM lines of each file")

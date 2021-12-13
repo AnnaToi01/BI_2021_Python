@@ -7,7 +7,7 @@ import shutil
 
 def copy(path_to_input_file, path_to_output_file, recursive):
     """
-    Copies the file/directory at the path_to_file (directories only with -r option)
+    Copies the files/directories at the path_to_file (directories only with -r option)
     @param path_to_input_file: list, path to input file/directory
     @param path_to_output_file: str, path to output file/directory
     @param recursive: bool, recursively or not
@@ -29,7 +29,7 @@ def copy(path_to_input_file, path_to_output_file, recursive):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="copy a file and directory")
+    parser = argparse.ArgumentParser(description="copy files and directories")
     parser.add_argument('-r', '--recursive', action='store_true',
                         help='copy directories and their contents recursively')
     parser.add_argument('path_to_input_file', help="path to input file", nargs='+', default=sys.stdin)
