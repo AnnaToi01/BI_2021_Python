@@ -41,7 +41,7 @@ def random_ls(n):
     @param n: Number of samples
     @return: None
     """
-    [random.random for i in range(n)]
+    [random.random() for i in range(n)]
     return
 
 
