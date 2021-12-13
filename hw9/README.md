@@ -1,6 +1,6 @@
 # UNIX utilities simulator
 
-These Python 3.8 scripts simulate the well-known UNIX command utilities using only built-in libraries, not including subprocess. 
+These Python 3.8 scripts simulate the well-known UNIX command utilities using only built-in libraries, not including subprocess. Please take into account that the utilities have only been used on Ubuntu 21.04 and might not be viable in other distributions.
 
 ## Table of Contents
 1. [List of Utilities](#utilities)
