@@ -98,9 +98,8 @@ class Taxonomy:
 
 class Alignment:
     """
-    Class Alignment works with tblastn (https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=tblastn)
-    and returns the alignments of a given protein sequence and corresponding organism,
-    based on the database Whole-genome shotgun contigs
+    Works with tblastn (https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=tblastn) alignment output and
+    returns an object with all the alignment details
     """
     def __init__(self, subj_name, subj_id, subj_len, num_matches,
                  subj_range, metrics_dic, score, e_value, identity, query_seq, subj_seq):
@@ -119,7 +118,8 @@ class Alignment:
 
 def query(fasta_seq, tax_id):
     """
-    Returns query entry for fasta sequence
+    Saves first query input HTML file, and the HTML file after job was completed,
+    returns the JobID (RID) and the accession numbers
     @param fasta_seq: str, FASTA sequence
     @param tax_id: str, taxon id
     @return: RID, str,
@@ -243,7 +243,8 @@ def query(fasta_seq, tax_id):
 
 def get_alignment(RID, acc_num_ls):
     """
-    Get alignment details from Alignment tab of the BLAST results
+    Saves the alignment HTML file and gets all alignment details from Alignment tab of the BLAST results,
+    generating an Alignment object and for each alignment match returning a list of Alignment objects
     @param RID: str, RID
     @param acc_num_ls: list, list of accession numbers
     @return: alignments, list of Alignment objects
