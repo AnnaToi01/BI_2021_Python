@@ -68,7 +68,7 @@ class FaultyAASeqReader:
 
     def __next__(self) -> str:
         """
-        Return the next item, here sequence, from the iterator.
+        Return the next item, here sequence, from the iterator (indefinitely).
 
         @return: sequence, str, modified/not modified sequence
         """
@@ -126,7 +126,7 @@ class FaultyAASeqReader:
 
     def deletion(self, sequence: str) -> str:
         """
-        Deletes a random segment from a sequence.
+        Delete a random segment from a sequence.
 
         @param sequence: str, sequence of letters
         @return: sequence, str, modified string
@@ -147,7 +147,7 @@ class FaultyAASeqReader:
 
     def insertion(self, sequence: str, max_length: int = 1000) -> str:
         """
-        Inserts a random amino acid sequence of random length into the original amino acid sequence.
+        Insert a random amino acid sequence of random length into the provided amino acid sequence.
         Maximal possible length of insertion can be changed by max_length variable.
 
         @param sequence: str, sequence of letters
@@ -173,7 +173,7 @@ class FaultyAASeqReader:
 
     def substitution(self, sequence: str, max_length: int = 10) -> str:
         """
-        Substitutes a random amino acid sequence of random length in the original amino acid sequence.
+        Substitute a random amino acid sequence of random length in the provided amino acid sequence.
         Maximal possible length of substitution can be changed by max_length variable.
 
         @param sequence: str, sequence of letters
@@ -199,7 +199,7 @@ class FaultyAASeqReader:
 
     def inversion(self, sequence: str, max_length: int = 100) -> str:
         """
-        Inverses a random amino acid sequence of random length of the original amino acid sequence.
+        Inverts a random amino acid sequence of random length of the provided amino acid sequence.
         Maximal possible length of inversion can be changed by max_length variable.
 
         @param sequence: str, sequence of letters
@@ -238,10 +238,10 @@ def iter_append(iterable: Iterable, item: Any):
 # Exercise 4
 def nested_list_unpacker(iterable: Iterable[Any]) -> List:
     """
-    Flatten a nested list (or tuple).
+    Completely flatten a nested list (or tuple).
     If just a string is passed - returns list of letters.
 
-    @param ls: Iterable
+    @param iterable: iterable
     @return: list, a flattened list
     """
 
@@ -249,7 +249,7 @@ def nested_list_unpacker(iterable: Iterable[Any]) -> List:
         """
         Generator - yields objects from a flattened iterable.
 
-        @param ls: list
+        @param iterable: iterable
         @return: objects from the list
         """
         for obj in iterable:
