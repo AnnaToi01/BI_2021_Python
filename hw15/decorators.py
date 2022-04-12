@@ -93,7 +93,7 @@ def func4(a=None, b=None):
 # Exercise 3
 def russian_roulette_decorator(probability: float = 0.2, return_value: Any = "Ooops, your output has been stolen"):
     """
-    Makes the decorated function return the value (return_value) with given probability
+    Makes the decorated function return the value (return_value) with given probability.
     @param probability: float, probability to return return_value
     @param return_value: Any, return value
     @return: russian_roulette, function
@@ -131,7 +131,7 @@ def staticmethod_alt(func: Callable[P, T]) -> Callable[P, T]:
 # Additional exercise 2
 def dataclass_alt(original_class: object) -> T:
     """
-    Adds generated special methods to the class
+    Adds generated special methods to the class.
     Alternative to dataclass.
     @param original_class: class, to be decorated
     @return: DataClassWrapper, class, wrapped class
