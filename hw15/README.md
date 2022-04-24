@@ -53,7 +53,7 @@ All the files will be in the current directory.
          ```
        * Create virtual environment
          ```
-         $ virtualenv venv --python=3.8
+         $ virtualenv venv --python=3.10
          ```
        * Activate it
          ```
@@ -63,7 +63,7 @@ All the files will be in the current directory.
         * [Install Anaconda](https://docs.anaconda.com/anaconda/install/index.html)
         * Create virtual environment
            ```
-           $ conda create --name <env_name> python=3.8
+           $ conda create --name <env_name> python=3.10
            ```
         * Activate it
            ```
