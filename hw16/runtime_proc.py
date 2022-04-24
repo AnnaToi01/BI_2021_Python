@@ -54,11 +54,12 @@ def plot_runtimes(runtimes, n_procs=list(range(41))):
 
 
 if __name__ == "__main__":
+    # Measuring
     runtimes_4 = measure_proc_time_dependence(do_work, 10 ** 4)
-    # runtimes_5 = measure_proc_time_dependence(do_work, 10 ** 5)
-    # runtimes_6 = measure_proc_time_dependence(do_work, 10 ** 6)
+    runtimes_5 = measure_proc_time_dependence(do_work, 10 ** 5)
+    runtimes_6 = measure_proc_time_dependence(do_work, 10 ** 6)
 
+    # Plotting
     plot_runtimes(runtimes_4)
-    # plot_runtimes(runtimes_5)
-    # plot_runtimes(runtimes_6)
-
+    plot_runtimes(runtimes_5)
+    plot_runtimes(runtimes_6)
