@@ -25,9 +25,7 @@ def check_response(resp):
     @param resp: requests.models.Response
     @return: None
     """
-    if resp.ok:
-        pass
-    else:
+    if not resp.ok:
         print(resp.url)
         print(resp.status_code)
 
