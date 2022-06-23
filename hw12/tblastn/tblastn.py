@@ -278,7 +278,7 @@ def get_alignment(RID, acc_num_ls):
 
     alig_list = []
 
-    for i in alig_soup.find_all("div", class_="oneSeqAln"):
+    for algn_soup in alig_soup.find_all("div", class_="oneSeqAln"):
         # Title/headers of one alignment block
         title = i.find("div", class_="dlfRow").text.strip().split("\n")
 
