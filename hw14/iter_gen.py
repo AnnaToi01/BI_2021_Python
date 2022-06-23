@@ -236,7 +236,7 @@ def iter_append(iterable: Iterable, item: Any):
 
 
 # Exercise 4
-def nested_list_unpacker(iterable: Iterable[Any]) -> List:
+def nested_list_unpacker(iterable: Iterable) -> List:
     """
     Completely flatten a nested list (or tuple).
     If just a string is passed - returns list of letters.
