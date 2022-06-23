@@ -6,9 +6,7 @@ import requests
 
 pd.options.mode.chained_assignment = None
 
-r = requests.get("https://raw.githubusercontent.com/Serfentum/bf_course/master/14.pandas/train.csv")
-data = StringIO(r.text)
-df = pd.read_csv(data, sep=",")
+df = pd.read_csv("https://raw.githubusercontent.com/Serfentum/bf_course/master/14.pandas/train.csv", sep=",")
 
 f = df.columns.get_loc
 ACGT = df.iloc[:, np.r_[f("reads_all"), f("A"):f("A_fraction")]]
