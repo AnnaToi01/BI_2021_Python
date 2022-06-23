@@ -1,7 +1,7 @@
 class PositiveSet(set):
     def __init__(self, collection):
         self.data = [element for element in collection if isinstance(element, (int, float)) and element > 0]
-        super(PositiveSet, self).__init__(self.data)
+        super().__init__(self.data)
 
     def add(self, element):
         """
