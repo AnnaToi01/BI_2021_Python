@@ -28,7 +28,7 @@ def fasta_reader(path_to_file: str, include_gt_sign: bool = True):
                 if include_gt_sign:
                     id_ = line.strip()
                 else:
-                    id_ = line.strip()[1:]
+                    id_ = line.strip().lstrip(">")
 
                 continue
             # Sequence line
